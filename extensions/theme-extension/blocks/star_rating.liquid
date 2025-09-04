@@ -1,0 +1,124 @@
+<div class="delivery-info-container"
+     style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.text_color }};">
+  
+  <div id="delivery-message-enhanced"
+       {% if product %}data-product-id="{{ product.id }}"{% endif %}
+       data-app-domain="https://reporting-consisting-ll-zoloft.trycloudflare.com"
+       {% if collection %}data-collection-id="{{ collection.id | remove: 'gid://shopify/Collection/' }}"{% endif %}
+       style="font-size: {{ block.settings.font_size }}px;">
+    <div class="spinner"></div>
+    <span>Detecting your location...</span>
+  </div>
+
+  <div class="manual-country-check">
+    <label for="countrySearch" class="sr-only">Enter country name</label>
+    <input
+      type="text"
+      id="countrySearch"
+      placeholder="Search for a country..."
+      style="font-size: {{ block.settings.input_font_size }}px;"
+    />
+    <ul id="countryList" style="font-size: {{ block.settings.input_font_size }}px;"></ul>
+    
+    <label for="zipCodeInput" class="sr-only">Enter zip code</label>
+    <input
+      type="text"
+      id="zipCodeInput"
+      placeholder="Enter zip code (e.g., 74400)"
+      style="font-size: {{ block.settings.input_font_size }}px; margin-top: 10px;"
+    />
+    
+    <button id="checkCountryBtn"
+            style="font-size: {{ block.settings.btn_font_size }}px; background-color: {{ block.settings.accent_color }};"
+            onmouseover="this.style.backgroundColor='{{ block.settings.accent_color | color_darken: 10 }}'"
+            onmouseout="this.style.backgroundColor='{{ block.settings.accent_color }}'">
+      Check
+    </button>
+  </div>
+
+  <div id="delivery-timer-container"></div>
+</div>
+
+<div class="delivery-timeline-container" style="margin-top: 20px; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+  <h3 id="delivery-timeline-message" style="font-size: 16px; font-weight: 600; margin-bottom: 15px; text-align: center; color: #2d3748; text-transform: uppercase;">
+  </h3>
+
+  <div class="timeline-boxes" style="display: flex; justify-content: space-between; gap: 10px;">
+    
+    <div class="timeline-box" style="flex: 1; padding: 12px; border-radius: 8px; background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); box-shadow: 0 2px 5px rgba(0,0,0,0.08); text-align: center; min-width: 0;">
+      <div style="width: 20px; height: 20px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #4facfe; margin: 0 auto 8px auto; font-size: 12px;">1</div>
+      <span style="font-size: 14px; font-weight: 600; color: white; display: block;">Order Now</span>
+      <p id="order-now-date" style="margin-top: 5px; color: rgba(255,255,255,0.9); font-size: 11px; line-height: 1.3;">Place your order</p>
+    </div>
+
+    <div class="timeline-box" style="flex: 1; padding: 12px; border-radius: 8px; background: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%); box-shadow: 0 2px 5px rgba(0,0,0,0.08); text-align: center; min-width: 0;">
+      <div style="width: 20px; height: 20px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #ff758c; margin: 0 auto 8px auto; font-size: 12px;">2</div>
+      <span style="font-size: 14px; font-weight: 600; color: white; display: block;">Ready to Ship</span>
+      <p id="ready-to-ship-date" style="margin-top: 5px; color: rgba(255,255,255,0.9); font-size: 11px; line-height: 1.3;">Preparing order</p>
+    </div>
+
+    <div class="timeline-box" style="flex: 1; padding: 12px; border-radius: 8px; background: linear-gradient(to right, #7b4397 0%, #dc2430 100%); box-shadow: 0 2px 5px rgba(0,0,0,0.08); text-align: center; min-width: 0;">
+      <div style="width: 20px; height: 20px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #7b4397; margin: 0 auto 8px auto; font-size: 12px;">3</div>
+      <span style="font-size: 14px; font-weight: 600; color: white; display: block;">Delivery</span>
+      <p id="delivery-date" style="margin-top: 5px; color: rgba(255,255,255,0.9); font-size: 11px; line-height: 1.3;">Awaiting info...</p>
+    </div>
+
+  </div>
+</div>
+
+{{ 'delivery-message.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'delivery-message-enhanced.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Auto-Detect Delivery Info",
+  "target": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFDE21"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "btn_font_size",
+      "label": "Btn Font Size (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "input_font_size",
+      "label": "Input Font Size (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    }
+  ]
+}
+{% endschema %}

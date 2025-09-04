@@ -1,0 +1,77 @@
+.delivery-info-container {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 440px;
+  margin: auto;
+}
+
+#delivery-message-enhanced {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.manual-country-check {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.manual-country-check label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.manual-country-check input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+
+.manual-country-check input:focus {
+  outline: none;
+  border-color: #007acc;
+}
+
+#countryList {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
+
+#countryList li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+#countryList li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+#checkCountryBtn {
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#checkCountryBtn:hover {
+  transform: translateY(-2px);
+}
+
+#delivery-timer-container {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}

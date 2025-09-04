@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "3a38a61376d34857ac3ee8a15e06d94f"
+name = "geo-location-2"
+application_url = "https://reporting-consisting-ll-zoloft.trycloudflare.com"
+embedded = true
+handle = "geo-location-7"
+
+[build]
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2025-07"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://reporting-consisting-ll-zoloft.trycloudflare.com/auth/callback",
+  "https://reporting-consisting-ll-zoloft.trycloudflare.com/auth/shopify/callback",
+  "https://reporting-consisting-ll-zoloft.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false
